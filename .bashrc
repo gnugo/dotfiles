@@ -64,7 +64,6 @@ if ! shopt -oq posix; then
 fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
-export OPENAI_API_KEY=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
 # Path on estão os scripts
 
 export PATH="$HOME/scripts:$PATH"
