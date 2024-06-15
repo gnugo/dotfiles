@@ -1,7 +1,7 @@
 # DotFiles
 
 * .bashrc
-* .tmux
+* .tmux - em banho maria
 
 ## Work in Progress
 
