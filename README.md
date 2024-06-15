@@ -1,9 +1,10 @@
 # DotFiles
 
 * .bashrc
-* .vimrc
 * .tmux
 
 ## Work in Progress
 
-Criar e utilizar este repositório para manter e migrar as minhas configurações.
+Repositório para manter e migrar as minhas configurações.
+
+Frankenstein de um autodidata. 
