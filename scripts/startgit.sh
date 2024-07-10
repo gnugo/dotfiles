@@ -39,15 +39,15 @@ if [ ! -f "$SSH_KEY" ]; then
 fi
 
 # Update the system
-log "Updating the system... because who doesn't love updates?"
+log "Updating the system..."
 sudo apt update | tee -a $LOGFILE && sudo apt upgrade -y | tee -a $LOGFILE
 
 # Clone the git repository using SSH
-log "Cloning your awesome git repository using SSH..."
+log "Cloning git repository using SSH..."
 git clone git@github.com:gnugo/dotfiles.git ~/repo | tee -a $LOGFILE
 
 # Rename the original .bashrc
-log "Renaming the original .bashrc to .bashrc_default... it's going undercover."
+log "Renaming the original .bashrc to .bashrc_default..."
 mv ~/.bashrc ~/.bashrc_default | tee -a $LOGFILE
 
 # Copy the new .bashrc from the repo to home
@@ -55,11 +55,11 @@ log "Copying the new .bashrc from the repo to your home folder..."
 cp ~/repo/.bashrc ~/ | tee -a $LOGFILE
 
 # Create the scripts folder in home
-log "Creating a scripts folder in your home directory... because organization is key."
+log "Creating a scripts folder in your home directory.."
 mkdir -p ~/scripts | tee -a $LOGFILE
 
 # Copy scripts from the repo to the scripts folder in home
-log "Copying scripts from the repo to your shiny new scripts folder..."
+log "Copying scripts from the repo to  new scripts folder..."
 cp ~/repo/scripts/* ~/scripts/ | tee -a $LOGFILE
 
 # Navigate to the repo directory
@@ -75,6 +75,6 @@ log "Pulling latest changes from the remote repository..."
 git pull origin main | tee -a $LOGFILE
 
 log "------------------------------------------------------------"
-log "All done! You've got an updated system, a new .bashrc, and your scripts are in ~/scripts."
-log "Your repo is also set up and synchronized. Go you!"
+log "All done!"
+log "Your repo is also set up and synchronized."
 log "------------------------------------------------------------"
