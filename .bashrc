@@ -66,7 +66,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 # Path on estão os scripts
 
-export PATH="$HOME/scripts:$PATH"
+export PATH="$HOME/dotfiles/scripts:$PATH"
 
 # CD PATH para navegar diretorios. O ponto no inicio serve para aceder a hidden files
 
