@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define log file
-LOGDIR=~/scripts/logs
+LOGDIR=~/dotfiles/logs
 LOGFILE=$LOGDIR/update_system.log
 
 # Create log directory if it doesn't exist
@@ -52,18 +52,10 @@ mv ~/.bashrc ~/.bashrc_default | tee -a $LOGFILE
 
 # Copy the new .bashrc from the repo to home
 log "Copying the new .bashrc from the repo to your home folder..."
-cp ~/repo/.bashrc ~/ | tee -a $LOGFILE
-
-# Create the scripts folder in home
-log "Creating a scripts folder in your home directory.."
-mkdir -p ~/scripts | tee -a $LOGFILE
-
-# Copy scripts from the repo to the scripts folder in home
-log "Copying scripts from the repo to  new scripts folder..."
-cp ~/repo/scripts/* ~/scripts/ | tee -a $LOGFILE
+cp ~/dotfiles/.bashrc ~/ | tee -a $LOGFILE
 
 # Navigate to the repo directory
-cd ~/repo
+cd ~/dotfiles
 
 # Initialize the repo as a git repository and set the remote origin using SSH
 log "Initializing git repository and setting remote origin using SSH..."
