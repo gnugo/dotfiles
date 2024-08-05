@@ -57,13 +57,33 @@ sudo apt update | tee -a $LOGFILE && sudo apt upgrade -y | tee -a $LOGFILE
 log "Cloning git repository using SSH..."
 git clone git@github.com:gnugo/dotfiles.git ~/dotfiles | tee -a $LOGFILE
 
-# Rename the original .bashrc
-log "Renaming the original .bashrc to .bashrc_default..."
-mv ~/.bashrc ~/.bashrc_default | tee -a $LOGFILE
+# Rename the original .bashrc if it exists
+if [ -f ~/.bashrc ]; then
+    log "Renaming the original .bashrc to .bashrc_default..."
+    mv ~/.bashrc ~/.bashrc_default | tee -a $LOGFILE
+else
+    log "No existing .bashrc file found. Skipping renaming."
+fi
 
 # Copy the new .bashrc from the repo to home
-log "Copying the new .bashrc from the repo to your home folder..."
-cp ~/dotfiles/.bashrc ~/ | tee -a $LOGFILE
+if [ -f ~/dotfiles/.bashrc ]; then
+    log "Copying the new .bashrc from the repo to your home folder..."
+    cp ~/dotfiles/.bashrc ~/ | tee -a $LOGFILE
+else
+    log "No .bashrc file found in the repo. Skipping copy."
+fi
+
+# Create the scripts folder in home if it doesn't exist
+log "Creating a scripts folder in your home directory if it doesn't exist..."
+mkdir -p ~/scripts | tee -a $LOGFILE
+
+# Copy scripts from the repo to the scripts folder in home
+if [ -d ~/dotfiles/scripts ]; then
+    log "Copying scripts from the repo to your shiny new scripts folder..."
+    cp ~/dotfiles/scripts/* ~/scripts/ | tee -a $LOGFILE
+else
+    log "No scripts folder found in the repo. Skipping copy."
+fi
 
 # Navigate to the repo directory
 cd ~/dotfiles
