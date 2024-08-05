@@ -14,6 +14,13 @@ log() {
     echo "------------------------------------------------------------" | tee -a $LOGFILE
 }
 
+# Check if git is installed, if not, install it
+if ! command -v git &> /dev/null; then
+    log "Git is not installed. Installing git..."
+    sudo apt update | tee -a $LOGFILE
+    sudo apt install git -y | tee -a $LOGFILE
+fi
+
 # Check if xclip is installed, if not, install it
 if ! command -v xclip &> /dev/null; then
     log "xclip is not installed. Installing xclip..."
@@ -26,8 +33,12 @@ if [ -z "$EMAIL" ]; then
     read -p "Enter your email address for SSH key: " EMAIL
 fi
 
+# Prompt for SSH key file name
+read -p "Enter a name for the SSH key file (default is id_ed25519): " KEY_NAME
+KEY_NAME=${KEY_NAME:-id_ed25519}
+
 # Generate SSH key if it doesn't exist
-SSH_KEY=~/.ssh/id_ed25519
+SSH_KEY=~/.ssh/$KEY_NAME
 if [ ! -f "$SSH_KEY" ]; then
     log "Generating a new SSH key with email $EMAIL..."
     ssh-keygen -t ed25519 -C "$EMAIL" -f $SSH_KEY -N "" | tee -a $LOGFILE
@@ -44,7 +55,7 @@ sudo apt update | tee -a $LOGFILE && sudo apt upgrade -y | tee -a $LOGFILE
 
 # Clone the git repository using SSH
 log "Cloning git repository using SSH..."
-git clone git@github.com:gnugo/dotfiles.git ~/repo | tee -a $LOGFILE
+git clone git@github.com:gnugo/dotfiles.git ~/dotfiles | tee -a $LOGFILE
 
 # Rename the original .bashrc
 log "Renaming the original .bashrc to .bashrc_default..."
@@ -70,3 +81,4 @@ log "------------------------------------------------------------"
 log "All done!"
 log "Your repo is also set up and synchronized."
 log "------------------------------------------------------------"
+
