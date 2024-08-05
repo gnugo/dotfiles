@@ -1,0 +1,10 @@
+tmux new-session -d -s \; \
+  send-keys 'ssh gnuvem' C-m \; \
+  split-window -h \; \
+  send-keys 'ssh zentrip' C-m \; \
+  split-window -v \; \
+  send-keys 'ssh cloud.zentrip' C-m \; \
+  select-pane -t 0 \; \
+  split-window -v \; \
+  send-keys 'ssh zentribe' C-m \; \
+  attach-session -t 
