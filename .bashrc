@@ -27,6 +27,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias volta='sudo reboot'
     alias ?='duck'
     alias ??='mods'
+    alias tssh='tmux-ssh'
  #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
